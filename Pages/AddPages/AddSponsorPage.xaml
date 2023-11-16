@@ -7,7 +7,7 @@
              xmlns:models="clr-namespace:EventManagementApp.Models">
     <!--Displayed in the tool bar at the top of the page-->
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{OnPlatform Default='+ Add Product', iOS='+'}"
+        <ToolbarItem Text="{OnPlatform Default='+ Add Sponsor', iOS='+'}"
                      Command="{Binding SetOperatingSponsorCommand}"/>
     </ContentPage.ToolbarItems>
     <ScrollView>
@@ -18,17 +18,17 @@
                 <Frame>
                     <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, Auto" Padding="10" RowSpacing="10" ColumnSpacing="10">
                         <VerticalStackLayout Grid.Row="0" Grid.Column="0">
-                            <Label Text="Organizer:" FontSize="24"/>
+                            <Label Text="Sponsor:" FontSize="24"/>
                             <Entry Text="{Binding OperatingSponsor.SponsorName}" Placeholder="Sponsor Name" Margin="0"/>
                             <Entry Text="{Binding OperatingSponsor.SponsorDetails}" Placeholder="Sponsor Details"/>
                             <Entry Text="{Binding OperatingSponsor.SponsorImage}" Placeholder="Sponsor Image URL"/>
                         </VerticalStackLayout>
 
-                        <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Update Organizer" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="4" Padding="50, 0" BackgroundColor="#BCA37F"
+                        <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Update" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="4" Padding="50, 0" BackgroundColor="#BCA37F"
                         Command="{Binding SaveSponsorCommand}">
                             <Button.Triggers>
                                 <DataTrigger TargetType="Button" Binding="{Binding OperatingSponsor.SponsorID}" Value="0">
-                                    <Setter Property="Text" Value="Create Sponsor"/>
+                                    <Setter Property="Text" Value="Create"/>
                                 </DataTrigger>
                             </Button.Triggers>
                         </Button>
@@ -36,7 +36,7 @@
                 </Frame>
             </VerticalStackLayout>
 
-            <Label Text="Organizers List" FontAttributes="Bold" FontSize="24" Padding="10"/>
+            <Label Text="Sponsors List:" FontAttributes="Bold" FontSize="24" Padding="10"/>
 
             <!--UI indication of time elapsed to respond to event database-->
             <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsBusy}">
@@ -70,7 +70,7 @@
                                             </Grid.GestureRecognizers>
 
                                             <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Source="{Binding SponsorImage}" HeightRequest="50" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding SponsorName}" FontAttributes="Bold" FontSize="18"/>
+                                            <Label Grid.Row="0" Grid.Column="1" Margin="10" Text="{Binding SponsorName}" FontAttributes="Bold" FontSize="18"/>
                                             <Label Grid.Row="1" Grid.Column="0" Text="{Binding SponsorDetails}" FontSize="12"/>
                                         </Grid>
                                     </Frame>
