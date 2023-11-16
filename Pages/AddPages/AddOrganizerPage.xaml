@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventManagementApp.Pages.AddOrganizerPage"
+             Title="Add an Organizer"
+             xmlns:viewmodel="clr-namespace:EventManagementApp.ViewModels"
+             xmlns:models="clr-namespace:EventManagementApp.Models">
+    <!--Displayed in the tool bar at the top of the page-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{OnPlatform Default='+ Add Product', iOS='+'}"
+                     Command="{Binding SetOperatingOrganizerCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout>
+            <!--Create event, when edit is clicked, the functionality changes from saving a new event to editing, pressing the add event in the tool bar reverts functionality-->
+            <VerticalStackLayout>
+                <BoxView Color="#FFF2D8" HeightRequest="1"/>
+                <Frame>
+                    <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, Auto" Padding="10" RowSpacing="10" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                            <Label Text="Organizer:" FontSize="24"/>
+                            <Entry Text="{Binding OperatingOrganizer.OrganizerName}" Placeholder="Organizer Name" Margin="0"/>
+                            <Entry Text="{Binding OperatingOrganizer.OrganizerDetails}" Placeholder="Organizer Details"/>
+                            <Entry Text="{Binding OperatingOrganizer.OrganizerImage}" Placeholder="Organizer Image URL"/>
+                        </VerticalStackLayout>
+
+                        <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Update Organizer" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="4" Padding="50, 0" BackgroundColor="#BCA37F"
+                        Command="{Binding SaveOrganizerCommand}">
+                            <Button.Triggers>
+                                <DataTrigger TargetType="Button" Binding="{Binding OperatingOrganizer.OrganizerID}" Value="0">
+                                    <Setter Property="Text" Value="Create Organizer"/>
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </Grid>
+                </Frame>
+            </VerticalStackLayout>
+
+            <Label Text="Organizers List" FontAttributes="Bold" FontSize="24" Padding="10"/>
+
+            <!--UI indication of time elapsed to respond to event database-->
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsBusy}">
+                <ActivityIndicator IsRunning="True" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Text="{Binding BusyText}" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            <Grid RowDefinitions="Auto, Auto">
+                <CollectionView Grid.Row="0" ItemsSource="{Binding Organizers}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:OrganizersModel">
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Edit" BackgroundColor="Green" IconImageSource="edit.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:OrganizersViewModel}}, Path=SetOperatingOrganizerCommand}" CommandParameter="{Binding .}" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete" BackgroundColor="Red" IconImageSource="delete.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:OrganizersViewModel}}, Path=DeleteOrganizerCommand}" CommandParameter="{Binding OrganizerID}" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <StackLayout Margin="1">
+                                    <!-- Display information of the event in a frame -->
+                                    <Frame Padding="3">
+                                        <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="Auto, Auto" RowSpacing="5" Padding="5" BackgroundColor="White">
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:OrganizersViewModel}}, Path=TapCommand}" CommandParameter="{Binding .}" />
+                                            </Grid.GestureRecognizers>
+
+                                            <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Source="{Binding OrganizerImage}" HeightRequest="50" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding OrganizerName}" FontAttributes="Bold" FontSize="18"/>
+                                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding OrganzierDetails}" FontSize="12"/>
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                    <!--If collection view is empty, meaning no tasks are in the database, this is displayed on the page-->
+                    <CollectionView.EmptyView>
+                        <ContentView>
+                            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="No Organizers Found" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                <Label Text="Try creating a new Organizer"/>
+                            </VerticalStackLayout>
+                        </ContentView>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </Grid>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

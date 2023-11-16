@@ -22,7 +22,25 @@
         <ShellContent
         Title="New Event"
         ContentTemplate="{DataTemplate local:AddEventPage}"
-        Route="DetailPage"
+        Route="AddEventPage"
+        Icon="{OnPlatform 'addevent_icon.png'}"/>
+
+        <ShellContent
+        Title="New Organizer"
+        ContentTemplate="{DataTemplate local:AddOrganizerPage}"
+        Route="AddOrganizerPage"
+        Icon="{OnPlatform 'addevent_icon.png'}"/>
+
+        <ShellContent
+        Title="New Speaker"
+        ContentTemplate="{DataTemplate local:AddSpeakerPage}"
+        Route="AddSpeakerPage"
+        Icon="{OnPlatform 'addevent_icon.png'}"/>
+
+        <ShellContent
+        Title="New Sponsor"
+        ContentTemplate="{DataTemplate local:AddSponsorPage}"
+        Route="AddSponsorPage"
         Icon="{OnPlatform 'addevent_icon.png'}"/>
 
     </TabBar>

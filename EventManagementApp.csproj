@@ -63,16 +63,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Pages\AddEventPage.xaml">
+	  <MauiXaml Update="Pages\AddPages\AddEventPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AddOrganizerPage.xaml">
+	  <MauiXaml Update="Pages\AddPages\AddOrganizerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AddSpeakerPage.xaml">
+	  <MauiXaml Update="Pages\AddPages\AddSpeakerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\AddSponsorPage.xaml">
+	  <MauiXaml Update="Pages\AddPages\AddSponsorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\DataVisualizationPage.xaml">

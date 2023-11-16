@@ -1,3 +1,4 @@
+using EventManagementApp.Data;
 using EventManagementApp.ViewModels;
 
 namespace EventManagementApp.Pages;
@@ -5,7 +6,6 @@ namespace EventManagementApp.Pages;
 public partial class AddEventPage : ContentPage
 {
 	private readonly EventsViewModel _viewmodel;
-	private readonly OrganizersViewModel _viewmodel2;
 
 	public AddEventPage(EventsViewModel viewmodel)
 	{
@@ -30,15 +30,14 @@ public partial class AddEventPage : ContentPage
 
 	private async void OrganizerButton_Clicked(object sender, EventArgs e)
 	{
-		await Navigation.PushAsync(new AddOrganizerPage(_viewmodel2));
-	}
-	private async void SpeakerButton_Clicked(object sender, EventArgs e)
-	{
-		await Navigation.PushAsync(new AddSpeakerPage());
 
 	}
-	private async void SponsorButton_Clicked(object sender, EventArgs e)
+	private void SpeakerButton_Clicked(object sender, EventArgs e)
 	{
-		await Navigation.PushAsync(new AddSponsorPage());
+
+	}
+	private void SponsorButton_Clicked(object sender, EventArgs e)
+	{
+
 	}
 }

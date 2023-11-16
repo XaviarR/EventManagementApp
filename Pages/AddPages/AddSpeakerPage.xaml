@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventManagementApp.Pages.AddOrganizerPage"
-             Title="Add an Organizer"
+             x:Class="EventManagementApp.Pages.AddSpeakerPage"
+             Title="Add a Speaker"
              xmlns:viewmodel="clr-namespace:EventManagementApp.ViewModels"
              xmlns:models="clr-namespace:EventManagementApp.Models">
     <!--Displayed in the tool bar at the top of the page-->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{OnPlatform Default='+ Add Product', iOS='+'}"
-                     Command="{Binding SetOperatingOrganizerCommand}"/>
+                     Command="{Binding SetOperatingSpeakerCommand}"/>
     </ContentPage.ToolbarItems>
     <ScrollView>
         <StackLayout>
@@ -19,15 +19,15 @@
                     <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, Auto" Padding="10" RowSpacing="10" ColumnSpacing="10">
                         <VerticalStackLayout Grid.Row="0" Grid.Column="0">
                             <Label Text="Organizer:" FontSize="24"/>
-                            <Entry Text="{Binding OperatingOrganizer.OrganizerTitle}" Placeholder="Organizer Name" Margin="0"/>
-                            <Entry Text="{Binding OperatingOrganizer.OrganizerDetails}" Placeholder="Organizer Details"/>
-                            <Entry Text="{Binding OperatingOrganizer.OrganizerImage}" Placeholder="Organizer Image URL"/>
+                            <Entry Text="{Binding OperatingSpeaker.SpeakerName}" Placeholder="Speaker Name" Margin="0"/>
+                            <Entry Text="{Binding OperatingSpeaker.SpeakerDetails}" Placeholder="Speaker Details"/>
+                            <Entry Text="{Binding OperatingSpeaker.SpeakerImage}" Placeholder="Speaker Image URL"/>
                         </VerticalStackLayout>
 
                         <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Update Organizer" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="4" Padding="50, 0" BackgroundColor="#BCA37F"
-                        Command="{Binding SaveOrganizerCommand}">
+                        Command="{Binding SaveSpeakerCommand}">
                             <Button.Triggers>
-                                <DataTrigger TargetType="Button" Binding="{Binding OperatingOrganizer.OrganizerID}" Value="0">
+                                <DataTrigger TargetType="Button" Binding="{Binding OperatingSpeaker.SpeakerID}" Value="0">
                                     <Setter Property="Text" Value="Create Organizer"/>
                                 </DataTrigger>
                             </Button.Triggers>
@@ -43,31 +43,39 @@
                 <ActivityIndicator IsRunning="True" VerticalOptions="Center" HorizontalOptions="Center"/>
                 <Label Text="{Binding BusyText}" VerticalOptions="Center" HorizontalOptions="Center"/>
             </VerticalStackLayout>
-            <Grid RowDefinitions="*, Auto">
-                <CollectionView Grid.Row="0" ItemsSource="{Binding Organizers}">
+            <Grid RowDefinitions="Auto, Auto">
+                <CollectionView Grid.Row="0" ItemsSource="{Binding Speakers}">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical" Span="2"/>
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:OrganizersModel">
-                            <StackLayout Margin="10">
-                                <!-- Display information of the event in a frame -->
-                                <Frame Padding="5">
-                                    <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="5" Padding="5" BackgroundColor="White">
-                                        <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:OrganizersViewModel}},Path=TapCommand}"
-                                                      CommandParameter="{Binding .}"/>
-                                        </Grid.GestureRecognizers>
+                        <DataTemplate x:DataType="models:SpeakersModel">
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Edit" BackgroundColor="Green" IconImageSource="edit.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SpeakersViewModel}}, Path=SetOperatingSpeakerCommand}" CommandParameter="{Binding .}" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete" BackgroundColor="Red" IconImageSource="delete.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SpeakersViewModel}}, Path=DeleteSpeakerCommand}" CommandParameter="{Binding SpeakerID}" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <StackLayout Margin="1">
+                                    <!-- Display information of the event in a frame -->
+                                    <Frame Padding="3">
+                                        <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="Auto, Auto" RowSpacing="5" Padding="5" BackgroundColor="White">
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SpeakersViewModel}}, Path=TapCommand}" CommandParameter="{Binding .}" />
+                                            </Grid.GestureRecognizers>
 
-                                        <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Source="{Binding OrganizerImage}" HeightRequest="100" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding OrganizerName}" FontAttributes="Bold" FontSize="18"/>
-                                        <Label Grid.Row="2" Grid.Column="0" Text="{Binding OrganzierDetails}" FontSize="12"/>
-
-                                        <Button Grid.Row="3" Grid.Column="0" Text="Edit" BackgroundColor="Green" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:OrganizersViewModel}}, Path=SetOperatingOrganizerCommand}" CommandParameter="{Binding .}"/>
-                                        <Button Grid.Row="3" Grid.Column="1" Text="Delete" BackgroundColor="Red" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:OrganizersViewModel}}, Path=DeleteOrganizerCommand}" CommandParameter="{Binding OrganizerID}"/>
-                                    </Grid>
-                                </Frame>
-                            </StackLayout>
+                                            <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Source="{Binding SpeakerImage}" HeightRequest="50" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding SpeakerName}" FontAttributes="Bold" FontSize="18"/>
+                                            <Label Grid.Row="1" Grid.Column="0" Text="{Binding SpeakerDetails}" FontSize="12"/>
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </SwipeView>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
 

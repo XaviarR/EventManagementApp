@@ -31,6 +31,9 @@ public static class MauiProgram
 		builder.Services.AddTransient<DataVisualizationPage>();
 		// Add Pages
 		builder.Services.AddTransient<AddEventPage>();
+		builder.Services.AddTransient<AddOrganizerPage>();
+		builder.Services.AddTransient<AddSpeakerPage>();
+		builder.Services.AddTransient<AddSponsorPage>();
 
 
 		return builder.Build();

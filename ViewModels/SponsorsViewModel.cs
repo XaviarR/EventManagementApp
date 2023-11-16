@@ -115,7 +115,7 @@ namespace EventManagementApp.ViewModels
 		{
 			await ExecuteAsync(async () =>
 			{
-				if (await _context.DeleteItemByKeyAync<OrganizersModel>(id))
+				if (await _context.DeleteItemByKeyAync<SpeakersModel>(id))
 				{
 					var task = Sponsors.FirstOrDefault(p => p.SponsorID == id);
 					Sponsors.Remove(task);
