@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventManagementApp.Pages.AddEventPage"
+             Title="AddEventPage"
+             xmlns:viewmodel="clr-namespace:EventManagementApp.ViewModels"
+             xmlns:models="clr-namespace:EventManagementApp.Models">
+    <!--Displayed in the tool bar at the top of the page-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{OnPlatform Default='+ Add Product', iOS='+'}"
+                     Command="{Binding SetOperatingEventCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout>
+            <!--Create event, when edit is clicked, the functionality changes from saving a new event to editing, pressing the add event in the tool bar reverts functionality-->
+            <VerticalStackLayout>
+                <BoxView Color="#FFF2D8" HeightRequest="1"/>
+                <Frame>
+                    <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, Auto" Padding="10" RowSpacing="10" ColumnSpacing="10">
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="0">
+                            <Label Text="Event:" FontSize="24"/>
+                            <Entry Text="{Binding OperatingEvent.EventTitle}" Placeholder="Event Name" Margin="0"/>
+                            <Entry Text="{Binding OperatingEvent.EventDescription}" Placeholder="Event Description"/>
+                            <Entry Text="{Binding OperatingEvent.EventImage}" Placeholder="Event Image URL"/>
+                        </VerticalStackLayout>
+
+                        <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Update Product" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="4" Padding="50, 0" BackgroundColor="#BCA37F"
+                        Command="{Binding SaveEventCommand}">
+                            <Button.Triggers>
+                                <DataTrigger TargetType="Button" Binding="{Binding OperatingEvent.EventID}" Value="0">
+                                    <Setter Property="Text" Value="Create Event"/>
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <StackLayout Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal">
+                            <Button Text="Add Organizer" CornerRadius="4" BackgroundColor="#BCA37F"
+                                    Clicked="OrganizerButton_Clicked"/>
+                            <Button Margin="1" Text="Add Speaker" CornerRadius="4" BackgroundColor="#BCA37F"
+                                    Clicked="SpeakerButton_Clicked"/>
+                            <Button Text="Add Sponsor" CornerRadius="4" BackgroundColor="#BCA37F"
+                                    Clicked="SponsorButton_Clicked"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+            </VerticalStackLayout>
+
+            <Label Text="Events List" FontAttributes="Bold" FontSize="24" Padding="10"/>
+
+            <!--UI indication of time elapsed to respond to event database-->
+            <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" IsVisible="{Binding IsBusy}">
+                <ActivityIndicator IsRunning="True" VerticalOptions="Center" HorizontalOptions="Center"/>
+                <Label Text="{Binding BusyText}" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+            <Grid RowDefinitions="*, Auto">
+                <CollectionView Grid.Row="0" ItemsSource="{Binding Events}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:EventsModel">
+                            <StackLayout Margin="10">
+                                <!-- Display information of the event in a frame -->
+                                <Frame Padding="5">
+                                    <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="5" Padding="5" BackgroundColor="White">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}},Path=TapCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                                        </Grid.GestureRecognizers>
+
+                                        <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Source="{Binding EventImage}" HeightRequest="100" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding EventTitle}" FontAttributes="Bold" FontSize="18"/>
+                                        <Label Grid.Row="2" Grid.Column="0" Text="{Binding EventDescription}" FontSize="12"/>
+
+                                        <Button Grid.Row="3" Grid.Column="0" Text="Edit" BackgroundColor="Green" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}}, Path=SetOperatingEventCommand}" CommandParameter="{Binding .}"/>
+                                        <Button Grid.Row="3" Grid.Column="1" Text="Delete" BackgroundColor="Red" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}}, Path=DeleteEventCommand}" CommandParameter="{Binding EventID}"/>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                    <!--If collection view is empty, meaning no tasks are in the database, this is displayed on the page-->
+                    <CollectionView.EmptyView>
+                        <ContentView>
+                            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="No Events Found" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                <Label Text="Try creating a new Event"/>
+                            </VerticalStackLayout>
+                        </ContentView>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </Grid>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
