@@ -104,7 +104,7 @@ namespace EventManagementApp.ViewModels
 				}
 
 				// Reset data of OperatingTask
-				SetOperatingOrganizerCommand.Execute(new());
+				SetOperatingOrganizer(OperatingOrganizer);
 			}, busyText);
 		}
 

@@ -1,12 +1,47 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventManagementApp.Pages.DetailPage"
-             Title="DetailPage">
+             x:Class="EventManagementApp.Pages.DetailPage">
+
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        
+        <Image Source="{Binding SelectedEvent.EventImage}"/>
+        
+        <Grid RowDefinitions="auto, auto, auto, auto, auto, *" ColumnDefinitions="auto, auto" RowSpacing="8">
+            
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding SelectedEvent.EventTitle}" FontSize="28" FontAttributes="Bold" TextDecorations="Underline"/>
+
+            <Frame Grid.Row="1">
+                <Label Text="{Binding SelectedEvent.EventBooking}" FontAttributes="Bold"/>
+            </Frame>
+            
+            <Label Grid.Row="2">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Organizers: " FontSize="22"/>
+                        <Span Text="{Binding SelectedEvent.Organizers}" FontSize="18"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Grid.Row="3">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Speakers: " FontSize="22"/>
+                        <Span Text="{Binding SelectedEvent.Speakers}" FontSize="18"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Grid.Row="4">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Sponsors: " FontSize="22"/>
+                        <Span Text="{Binding SelectedEvent.Sponsors}" FontSize="18"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Label Grid.Row="5" Grid.Column="0" Text="{Binding SelectedEvent.EventDescription}" FontSize="16"/>
+            
+        </Grid>
     </VerticalStackLayout>
+
 </ContentPage>

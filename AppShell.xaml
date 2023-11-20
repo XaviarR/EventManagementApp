@@ -14,7 +14,7 @@
         Icon="{OnPlatform 'home.png'}"/>
         
         <ShellContent
-        Title="Attending"
+        Title="Data"
         ContentTemplate="{DataTemplate local:DataVisualizationPage}"
         Route="DataVisualizationPage"
         Icon="{OnPlatform 'attending.png'}"/>
@@ -25,7 +25,7 @@
         Route="AddEventPage"
         Icon="{OnPlatform 'addevent_icon.png'}"/>
 
-        <ShellContent
+        <!--<ShellContent
         Title="New Organizer"
         ContentTemplate="{DataTemplate local:AddOrganizerPage}"
         Route="AddOrganizerPage"
@@ -41,7 +41,7 @@
         Title="New Sponsor"
         ContentTemplate="{DataTemplate local:AddSponsorPage}"
         Route="AddSponsorPage"
-        Icon="{OnPlatform 'addevent_icon.png'}"/>
+        Icon="{OnPlatform 'addevent_icon.png'}"/>-->
 
     </TabBar>
     

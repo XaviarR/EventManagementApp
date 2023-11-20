@@ -104,7 +104,7 @@ namespace EventManagementApp.ViewModels
 				}
 
 				// Reset data of OperatingTask
-				SetOperatingSponsorCommand.Execute(new());
+				SetOperatingSponsor(OperatingSponsor);
 			}, busyText);
 		}
 

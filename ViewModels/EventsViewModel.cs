@@ -2,12 +2,8 @@
 using CommunityToolkit.Mvvm.Input;
 using EventManagementApp.Data;
 using EventManagementApp.Models;
-using System;
-using System.Collections.Generic;
+using EventManagementApp.Pages;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EventManagementApp.ViewModels
 {
@@ -104,7 +100,7 @@ namespace EventManagementApp.ViewModels
 				}
 
 				// Reset data of OperatingTask
-				SetOperatingEventCommand.Execute(new());
+				SetOperatingEvent(OperatingEvent);
 			}, busyText);
 		}
 
@@ -143,5 +139,39 @@ namespace EventManagementApp.ViewModels
 				BusyText = "Processing...";
 			}
 		}
+		public async Task LoadEventDetailsAsync(int eventID)
+		{
+			await ExecuteAsync(async () =>
+			{
+				var eventDetails = await _context.GetItemByKeyAync<EventsModel>(eventID);
+
+				if (eventDetails != null)
+				{
+					SelectedEvent = eventDetails; // Update SelectedEvent
+				}
+			}, "Fetching event details...");
+		}
+
+
+		// Add a property to store the selected EventsModel
+		private EventsModel _selectedEvent;
+
+		public EventsModel SelectedEvent
+		{
+			get => _selectedEvent;
+			set => SetProperty(ref _selectedEvent, value);
+		}
+		[RelayCommand]
+		async Task Tap(EventsModel selectedEvent)
+		{
+			// Set the selected event
+			SelectedEvent = selectedEvent;
+
+
+			// Navigate to the DetailPage and pass the existing EventsViewModel instance
+			await Shell.Current.GoToAsync($"{nameof(DetailPage)}", true);
+
+		}
+
 	}
 }

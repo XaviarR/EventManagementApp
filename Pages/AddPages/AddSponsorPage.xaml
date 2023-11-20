@@ -20,8 +20,8 @@
                         <VerticalStackLayout Grid.Row="0" Grid.Column="0">
                             <Label Text="Sponsor:" FontSize="24"/>
                             <Entry Text="{Binding OperatingSponsor.SponsorName}" Placeholder="Sponsor Name" Margin="0"/>
-                            <Entry Text="{Binding OperatingSponsor.SponsorDetails}" Placeholder="Sponsor Details"/>
                             <Entry Text="{Binding OperatingSponsor.SponsorImage}" Placeholder="Sponsor Image URL"/>
+                            <Editor Text="{Binding OperatingSponsor.SponsorDetails}" Placeholder="Sponsor Details" HeightRequest="100"/>
                         </VerticalStackLayout>
 
                         <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Update" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="4" Padding="50, 0" BackgroundColor="#BCA37F"

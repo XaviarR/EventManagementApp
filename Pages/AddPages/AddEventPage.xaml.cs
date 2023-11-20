@@ -27,17 +27,28 @@ public partial class AddEventPage : ContentPage
 			Console.WriteLine($"An error occurred: {ex.Message}");
 		}
 	}
-
 	private async void OrganizerButton_Clicked(object sender, EventArgs e)
 	{
+		// Create an instance of AddOrganizerPage
+		AddOrganizerPage addOrganizerPage = new AddOrganizerPage();
 
+		// Navigate to AddOrganizerPage
+		await Navigation.PushAsync(addOrganizerPage);
 	}
-	private void SpeakerButton_Clicked(object sender, EventArgs e)
+	private async void SpeakerButton_Clicked(object sender, EventArgs e)
 	{
+		// Create an instance of AddOrganizerPage
+		AddSpeakerPage addOrganizerPage = new AddSpeakerPage();
 
+		// Navigate to AddOrganizerPage
+		await Navigation.PushAsync(addOrganizerPage);
 	}
-	private void SponsorButton_Clicked(object sender, EventArgs e)
+	private async void SponsorButton_Clicked(object sender, EventArgs e)
 	{
+		// Create an instance of AddOrganizerPage
+		AddSponsorPage addOrganizerPage = new AddSponsorPage();
 
+		// Navigate to AddOrganizerPage
+		await Navigation.PushAsync(addOrganizerPage);
 	}
 }

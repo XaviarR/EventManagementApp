@@ -104,7 +104,7 @@ namespace EventManagementApp.ViewModels
 				}
 
 				// Reset data of OperatingTask
-				SetOperatingSpeakerCommand.Execute(new());
+				SetOperatingSpeaker(OperatingSpeaker);
 			}, busyText);
 		}
 
