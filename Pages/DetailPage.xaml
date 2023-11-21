@@ -11,9 +11,12 @@
             <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding SelectedEvent.EventTitle}" FontSize="28" FontAttributes="Bold" TextDecorations="Underline"/>
 
             <Frame Grid.Row="1">
-                <Label Text="{Binding SelectedEvent.EventBooking}" FontAttributes="Bold"/>
+                <HorizontalStackLayout>
+                    <Label Text="{Binding SelectedEvent.EventBooking, StringFormat='{0:dd/MM/yyyy}'}" FontAttributes="Bold" Margin="5"/>
+                    <Label Text="{Binding SelectedEvent.EventBookingTime, StringFormat='{0:hh:mm tt}'}" FontAttributes="Bold" Margin="5"/>
+                </HorizontalStackLayout>
             </Frame>
-            
+
             <Label Grid.Row="2">
                 <Label.FormattedText>
                     <FormattedString>

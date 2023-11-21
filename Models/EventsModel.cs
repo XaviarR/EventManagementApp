@@ -15,6 +15,7 @@ namespace EventManagementApp.Models
 		public string EventDescription { get; set; }
 		public string EventImage { get; set; }
 		public DateTime EventBooking { get; set; }
+		public TimeSpan EventBookingTime { get; set; }
 		public bool EventAttending { get; set; }
 		public string Sponsors { get; set; }
 		public string Organizers { get; set; }

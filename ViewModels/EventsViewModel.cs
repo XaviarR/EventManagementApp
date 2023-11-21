@@ -72,16 +72,16 @@ namespace EventManagementApp.ViewModels
 				return;
 			}
 
-			// Update BusyText, if Id == 0 then text should display Creating Task, else Updating Task
+			// Update BusyText, if Id == 0 then text should display Creating Event, else Updating Event
 			var busyText = OperatingEvent.EventID == 0 ? "Creating Event..." : "Updating Event...";
 
 			await ExecuteAsync(async () =>
 			{
 				if (OperatingEvent.EventID == 0)
 				{
-					// Create Task
+					// Create Event
 					await _context.AddItemAync<EventsModel>(OperatingEvent);
-					// Add the new task to the collection only if it doesn't already exist
+					// Add the new Event to the collection only if it doesn't already exist
 					if (!Events.Any(t => t.EventID == OperatingEvent.EventID))
 					{
 						Events.Add(OperatingEvent);
@@ -89,20 +89,22 @@ namespace EventManagementApp.ViewModels
 				}
 				else
 				{
-					// Updating Task
+					// Update Event
 					await _context.UpdateItemAync<EventsModel>(OperatingEvent);
 					// create clone to keep data
-					var taskCopy = OperatingEvent.Clone();
+					var eventCopy = OperatingEvent.Clone();
 					// Get the index of the item to remove then add back
 					var index = Events.IndexOf(OperatingEvent);
 					Events.RemoveAt(index);
-					Events.Insert(index, taskCopy);
+					Events.Insert(index, eventCopy);
 				}
 
-				// Reset data of OperatingTask
+				// Reset data of OperatingEvent
 				SetOperatingEvent(OperatingEvent);
 			}, busyText);
 		}
+
+
 
 
 		// Delete Logic, When Task is deleted the ID is set to auto increment, meaning that it will continue even when task is deleted resulting in gaps of ID integer

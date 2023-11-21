@@ -22,8 +22,8 @@
                             <Label Text="Event:" FontSize="24"/>
                             <Entry Text="{Binding OperatingEvent.EventTitle}" Placeholder="Event Name" Margin="0" HeightRequest="50"/>
                             <Entry Text="{Binding OperatingEvent.EventImage}" Placeholder="Event Image URL" HeightRequest="50"/>
-                            <DatePicker Date="{Binding OperatingEvent.EventBooking.Date}" />
-                            <TimePicker Time="{Binding OperatingEvent.EventBooking.Time}" />
+                            <DatePicker Date="{Binding OperatingEvent.EventBooking}" />
+                            <TimePicker Time="{Binding OperatingEvent.EventBookingTime}" />
                             <Editor Text="{Binding OperatingEvent.EventDescription}" Placeholder="Event Description" HeightRequest="100"/>
                         </VerticalStackLayout>
 
