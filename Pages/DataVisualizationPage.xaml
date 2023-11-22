@@ -4,9 +4,8 @@
              x:Class="EventManagementApp.Pages.DataVisualizationPage"
              Title="DataVisualizationPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <WebView Source="https://forms.office.com/Pages/ResponsePage.aspx?id=X5ltcV6PsUuBhDiwao8SmAma0hwvJU5NlvvCuhyZ3FhUMDlaSDY4OEFTOTE2QThVMFJVTUFJRlhZMy4u"
+                 HeightRequest="1000"
+                 />
     </VerticalStackLayout>
 </ContentPage>
