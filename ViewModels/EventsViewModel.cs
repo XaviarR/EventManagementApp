@@ -13,7 +13,24 @@ namespace EventManagementApp.ViewModels
 		public EventsViewModel(DatabaseContext context)
 		{
 			_context = context;
+			OrganizersViewModel = new OrganizersViewModel(context);
+			SpeakersViewModel = new SpeakersViewModel(context);
 		}
+		private OrganizersViewModel _organizersViewModel;
+
+		public OrganizersViewModel OrganizersViewModel
+		{
+			get => _organizersViewModel;
+			set => SetProperty(ref _organizersViewModel, value);
+		}
+		private SpeakersViewModel _speakersViewModel;
+
+		public SpeakersViewModel SpeakersViewModel
+		{
+			get => _speakersViewModel;
+			set => SetProperty(ref _speakersViewModel, value);
+		}
+
 
 		[ObservableProperty]
 		private ObservableCollection<EventsModel> _events;
@@ -77,6 +94,12 @@ namespace EventManagementApp.ViewModels
 
 			await ExecuteAsync(async () =>
 			{
+				// Set the AssignedOrganizer property
+				OperatingEvent.AssignedOrganizer = OrganizersViewModel.Organizers.FirstOrDefault(o => o == OperatingEvent.AssignedOrganizer);
+
+				// Set the AssignedSpeaker property
+				OperatingEvent.AssignedSpeaker = SpeakersViewModel.Speakers.FirstOrDefault(o => o == OperatingEvent.AssignedSpeaker);
+
 				if (OperatingEvent.EventID == 0)
 				{
 					// Create Event
@@ -103,6 +126,7 @@ namespace EventManagementApp.ViewModels
 				SetOperatingEvent(OperatingEvent);
 			}, busyText);
 		}
+
 
 
 

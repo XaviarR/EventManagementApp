@@ -25,7 +25,7 @@
                                     
                                     <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Source="{Binding EventImage}" HeightRequest="100" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"/>
                                     <Label Grid.Row="1" Grid.Column="0" Text="{Binding EventTitle}" FontAttributes="Bold" FontSize="18"/>
-                                    <CheckBox Grid.Row="2" Grid.Column="1"/>
+                                    <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding EventAttending}"/>
                                     <Label Grid.Row="2" Grid.Column="0" Text="{Binding EventDescription}" FontSize="12"/>
                                     
                                 </Grid>

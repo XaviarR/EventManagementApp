@@ -21,7 +21,7 @@
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="Organizers: " FontSize="22"/>
-                        <Span Text="{Binding SelectedEvent.Organizers}" FontSize="18"/>
+                        <Span Text="{Binding SelectedEvent.AssignedOrganizer.OrganizerName}" FontSize="18"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -29,7 +29,7 @@
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="Speakers: " FontSize="22"/>
-                        <Span Text="{Binding SelectedEvent.Speakers}" FontSize="18"/>
+                        <Span Text="{Binding SelectedEvent.AssignedSpeaker.SpeakerName}" FontSize="18"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
