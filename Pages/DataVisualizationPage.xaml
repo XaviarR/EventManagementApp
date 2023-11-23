@@ -4,7 +4,8 @@
              x:Class="EventManagementApp.Pages.DataVisualizationPage"
              xmlns:viewmodel="clr-namespace:EventManagementApp.ViewModels"
              xmlns:models="clr-namespace:EventManagementApp.Models"
-             Title="Data">
+             Title="Data"
+             BackgroundColor="#EEEEEE">
     <ScrollView>
         <StackLayout>
             <Label Text="Attending Events:" FontSize="24" Margin="10" FontAttributes="Bold"/>
@@ -46,7 +47,7 @@
                         </CollectionView.EmptyView>
                     </CollectionView>
                 </Grid>
-            <Button Text="Feedback Form" Clicked="Button_Clicked" VerticalOptions="EndAndExpand"/>
+            <Button Text="Feedback Form" Clicked="Button_Clicked" VerticalOptions="EndAndExpand" BackgroundColor="#393E46"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

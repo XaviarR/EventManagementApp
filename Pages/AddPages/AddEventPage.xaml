@@ -4,7 +4,8 @@
              x:Class="EventManagementApp.Pages.AddEventPage"
              Title="Add an Event"
              xmlns:viewmodel="clr-namespace:EventManagementApp.ViewModels"
-             xmlns:models="clr-namespace:EventManagementApp.Models">
+             xmlns:models="clr-namespace:EventManagementApp.Models"
+             BackgroundColor="#EEEEEE">
     <!--Displayed in the tool bar at the top of the page-->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{OnPlatform Default='+ Add Event', iOS='+'}"
@@ -43,7 +44,7 @@
 
                         </VerticalStackLayout>
 
-                        <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Update" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="4" Padding="50, 0" BackgroundColor="#BCA37F"
+                        <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Update" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="4" Padding="50, 0" BackgroundColor="#393E46"
                         Command="{Binding SaveEventCommand}">
                             <Button.Triggers>
                                 <DataTrigger TargetType="Button" Binding="{Binding OperatingEvent.EventID}" Value="0">
@@ -52,11 +53,11 @@
                             </Button.Triggers>
                         </Button>
                         <StackLayout Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal">
-                            <Button Text="Add Organizer" CornerRadius="4" BackgroundColor="#BCA37F"
+                            <Button Text="New Organizer" CornerRadius="4" BackgroundColor="#393E46"
                                     Clicked="OrganizerButton_Clicked"/>
-                            <Button Margin="1" Text="Add Speaker" CornerRadius="4" BackgroundColor="#BCA37F"
+                            <Button Text="New Speaker" CornerRadius="4" BackgroundColor="#393E46"
                                     Clicked="SpeakerButton_Clicked"/>
-                            <Button Text="Add Sponsor" CornerRadius="4" BackgroundColor="#BCA37F"
+                            <Button Text="New Sponsor" CornerRadius="4" BackgroundColor="#393E46"
                                     Clicked="SponsorButton_Clicked"/>
                         </StackLayout>
                     </Grid>
@@ -90,7 +91,7 @@
                                         <Label Grid.Row="1" Grid.Column="0" Text="{Binding EventTitle}" FontAttributes="Bold" FontSize="18"/>
                                         <!--<Label Grid.Row="2" Grid.Column="0" Text="{Binding EventDescription}" FontSize="12"/>-->
 
-                                        <Button Grid.Row="3" Grid.Column="0" Text="Edit" BackgroundColor="Green" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}}, Path=SetOperatingEventCommand}" CommandParameter="{Binding .}"/>
+                                        <Button Grid.Row="3" Grid.Column="0" Text="Edit" BackgroundColor="#00ADB5" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}}, Path=SetOperatingEventCommand}" CommandParameter="{Binding .}"/>
                                         <Button Grid.Row="3" Grid.Column="1" Text="Delete" BackgroundColor="Red" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}}, Path=DeleteEventCommand}" CommandParameter="{Binding EventID}"/>
                                     </Grid>
                                 </Frame>

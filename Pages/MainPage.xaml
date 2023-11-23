@@ -4,7 +4,8 @@
              x:Class="EventManagementApp.Pages.MainPage"
              xmlns:viewmodel="clr-namespace:EventManagementApp.ViewModels"
              xmlns:models="clr-namespace:EventManagementApp.Models"
-             Title="Home">
+             Title="Home"
+             BackgroundColor="#EEEEEE">
 
 
     <ScrollView>

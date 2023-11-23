@@ -12,32 +12,34 @@ namespace EventManagementApp.ViewModels
 		private readonly DatabaseContext _context;
 		public EventsViewModel(DatabaseContext context)
 		{
+			//Create instance
 			_context = context;
 			OrganizersViewModel = new OrganizersViewModel(context);
 			SpeakersViewModel = new SpeakersViewModel(context);
 			SponsorsViewModel = new SponsorsViewModel(context);
 		}
+		//Link the organizers collection with eventsviewmodel
 		private OrganizersViewModel _organizersViewModel;
 		public OrganizersViewModel OrganizersViewModel
 		{
 			get => _organizersViewModel;
 			set => SetProperty(ref _organizersViewModel, value);
 		}
-		
+		//Link the speakers collection with eventsviewmodel
 		private SpeakersViewModel _speakersViewModel;
 		public SpeakersViewModel SpeakersViewModel
 		{
 			get => _speakersViewModel;
 			set => SetProperty(ref _speakersViewModel, value);
 		}
-
+		//Link the sponsors collection with the eventsviewmodel
 		private SponsorsViewModel _sponsorsViewModel;
 		public SponsorsViewModel SponsorsViewModel
 		{
 			get => _sponsorsViewModel;
 			set => SetProperty(ref _sponsorsViewModel, value);
 		}
-
+		//Create separete collection for filtering by if they're attending
 		private ObservableCollection<EventsModel> _attendingEvents;
 
 		public ObservableCollection<EventsModel> AttendingEvents
