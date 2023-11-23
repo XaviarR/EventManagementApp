@@ -22,6 +22,7 @@ public partial class AddEventPage : ContentPage
 			await _viewmodel.LoadEventAsync();
 			await _viewmodel.OrganizersViewModel.LoadOrganizerAsync();
 			await _viewmodel.SpeakersViewModel.LoadSpeakerAsync();
+			await _viewmodel.SponsorsViewModel.LoadSponsorAsync();
 		}
 		catch (Exception ex)
 		{

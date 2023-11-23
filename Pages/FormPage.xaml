@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventManagementApp.Pages.FormPage"
+             Title="FormPage">
+    <VerticalStackLayout>
+        <WebView Source="https://forms.office.com/Pages/ResponsePage.aspx?id=X5ltcV6PsUuBhDiwao8SmAma0hwvJU5NlvvCuhyZ3FhUMDlaSDY4OEFTOTE2QThVMFJVTUFJRlhZMy4u"
+                 HeightRequest="1000"
+                 />
+    </VerticalStackLayout>
+</ContentPage>

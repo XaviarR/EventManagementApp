@@ -41,5 +41,13 @@ namespace EventManagementApp.Models
 			set => AssignedSpeaker = Newtonsoft.Json.JsonConvert.DeserializeObject<SpeakersModel>(value);
 		}
 
+		[Ignore] // This tells SQLite to ignore this property during table creation
+		public SponsorsModel AssignedSponsor { get; set; }
+
+		public string AssignedSponsorJson
+		{
+			get => Newtonsoft.Json.JsonConvert.SerializeObject(AssignedSponsor);
+			set => AssignedSponsor = Newtonsoft.Json.JsonConvert.DeserializeObject<SponsorsModel>(value);
+		}
 	}
 }

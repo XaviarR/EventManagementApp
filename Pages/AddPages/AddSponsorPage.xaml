@@ -4,7 +4,8 @@
              x:Class="EventManagementApp.Pages.AddSponsorPage"
              Title="Add a Sponsor"
              xmlns:viewmodel="clr-namespace:EventManagementApp.ViewModels"
-             xmlns:models="clr-namespace:EventManagementApp.Models">
+             xmlns:models="clr-namespace:EventManagementApp.Models"
+             BackgroundColor="#EEEEEE">
     <!--Displayed in the tool bar at the top of the page-->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{OnPlatform Default='+ Add Sponsor', iOS='+'}"
@@ -24,7 +25,7 @@
                             <Editor Text="{Binding OperatingSponsor.SponsorDetails}" Placeholder="Sponsor Details" HeightRequest="100"/>
                         </VerticalStackLayout>
 
-                        <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Update" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="4" Padding="50, 0" BackgroundColor="#BCA37F"
+                        <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Update" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="4" Padding="50, 0" BackgroundColor="#393E46"
                         Command="{Binding SaveSponsorCommand}">
                             <Button.Triggers>
                                 <DataTrigger TargetType="Button" Binding="{Binding OperatingSponsor.SponsorID}" Value="0">
@@ -53,7 +54,7 @@
                             <SwipeView>
                                 <SwipeView.LeftItems>
                                     <SwipeItems>
-                                        <SwipeItem Text="Edit" BackgroundColor="Green" IconImageSource="edit.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SponsorsViewModel}}, Path=SetOperatingSponsorCommand}" CommandParameter="{Binding .}" />
+                                        <SwipeItem Text="Edit" BackgroundColor="#00ADB5" IconImageSource="edit.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SponsorsViewModel}}, Path=SetOperatingSponsorCommand}" CommandParameter="{Binding .}" />
                                     </SwipeItems>
                                 </SwipeView.LeftItems>
                                 <SwipeView.RightItems>
@@ -63,7 +64,7 @@
                                 </SwipeView.RightItems>
                                 <StackLayout Margin="1">
                                     <!-- Display information of the event in a frame -->
-                                    <Frame Padding="3">
+                                    <Frame Padding="3" BackgroundColor="#EEEEEE">
                                         <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="Auto, Auto" RowSpacing="5" Padding="5" BackgroundColor="White">
                                             <Grid.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SponsorsViewModel}}, Path=TapCommand}" CommandParameter="{Binding .}" />

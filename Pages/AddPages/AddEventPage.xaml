@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventManagementApp.Pages.AddEventPage"
-             Title="AddEventPage"
+             Title="Add an Event"
              xmlns:viewmodel="clr-namespace:EventManagementApp.ViewModels"
              xmlns:models="clr-namespace:EventManagementApp.Models">
     <!--Displayed in the tool bar at the top of the page-->
@@ -79,7 +79,7 @@
                         <DataTemplate x:DataType="models:EventsModel">
                             <StackLayout Margin="10">
                                 <!-- Display information of the event in a frame -->
-                                <Frame Padding="5">
+                                <Frame Padding="5" HeightRequest="200">
                                     <Grid RowDefinitions="Auto, Auto, Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="5" Padding="5" BackgroundColor="White">
                                         <Grid.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}},Path=TapCommand}"
@@ -88,7 +88,7 @@
 
                                         <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Source="{Binding EventImage}" HeightRequest="100" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"/>
                                         <Label Grid.Row="1" Grid.Column="0" Text="{Binding EventTitle}" FontAttributes="Bold" FontSize="18"/>
-                                        <Label Grid.Row="2" Grid.Column="0" Text="{Binding EventDescription}" FontSize="12"/>
+                                        <!--<Label Grid.Row="2" Grid.Column="0" Text="{Binding EventDescription}" FontSize="12"/>-->
 
                                         <Button Grid.Row="3" Grid.Column="0" Text="Edit" BackgroundColor="Green" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}}, Path=SetOperatingEventCommand}" CommandParameter="{Binding .}"/>
                                         <Button Grid.Row="3" Grid.Column="1" Text="Delete" BackgroundColor="Red" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}}, Path=DeleteEventCommand}" CommandParameter="{Binding EventID}"/>

@@ -3,47 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventManagementApp.Pages.MainPage"
              xmlns:viewmodel="clr-namespace:EventManagementApp.ViewModels"
-             xmlns:models="clr-namespace:EventManagementApp.Models">
+             xmlns:models="clr-namespace:EventManagementApp.Models"
+             Title="Home">
 
 
-    <StackLayout>
-        <Grid RowDefinitions="*, Auto">
-            <CollectionView Grid.Row="0" ItemsSource="{Binding Events}">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="2"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:EventsModel">
-                        <StackLayout Margin="10">
-                            <!-- Display information of the task in a frame -->
-                            <Frame Padding="5">
-                                <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="5" Padding="5" BackgroundColor="White">
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}},Path=TapCommand}"
-                                                              CommandParameter="{Binding .}"/>
-                                    </Grid.GestureRecognizers>
-                                    
-                                    <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Source="{Binding EventImage}" HeightRequest="100" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding EventTitle}" FontAttributes="Bold" FontSize="18"/>
-                                    <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding EventAttending}"/>
-                                    <Label Grid.Row="2" Grid.Column="0" Text="{Binding EventDescription}" FontSize="12"/>
-                                    
-                                </Grid>
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+    <ScrollView>
+        <StackLayout>
+            <Grid RowDefinitions="*, Auto">
+                <CollectionView Grid.Row="0" ItemsSource="{Binding Events}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:EventsModel">
+                            <StackLayout Margin="10">
+                                <!-- Display information of the task in a frame -->
+                                <Frame Padding="5" HeightRequest="190">
+                                    <!-- Set a fixed height for the frame -->
+                                    <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="5" Padding="5" BackgroundColor="White">
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}},Path=TapCommand}"
+                                          CommandParameter="{Binding .}"/>
+                                        </Grid.GestureRecognizers>
 
-                <!--If collection view is empty, meaning no tasks are in the database, this is displayed on the page-->
-                <CollectionView.EmptyView>
-                    <ContentView>
-                        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                            <Label Text="No Events Found" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                            <Label Text="Try creating a new Event"/>
-                        </VerticalStackLayout>
-                    </ContentView>
-                </CollectionView.EmptyView>
-            </CollectionView>
-        </Grid>
-    </StackLayout>
+                                        <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Source="{Binding EventImage}" HeightRequest="100" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding EventTitle}" FontAttributes="Bold" FontSize="18"/>
+                                        <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding EventAttending}"/>
+                                        <!--<Label Grid.Row="2" Grid.Column="0" Text="{Binding EventDescription}" FontSize="12"/>-->
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                    <!--If collection view is empty, meaning no tasks are in the database, this is displayed on the page-->
+                    <CollectionView.EmptyView>
+                        <ContentView>
+                            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="No Events Found" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                <Label Text="Try creating a new Event"/>
+                            </VerticalStackLayout>
+                        </ContentView>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

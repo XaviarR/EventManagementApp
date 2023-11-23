@@ -15,22 +15,36 @@ namespace EventManagementApp.ViewModels
 			_context = context;
 			OrganizersViewModel = new OrganizersViewModel(context);
 			SpeakersViewModel = new SpeakersViewModel(context);
+			SponsorsViewModel = new SponsorsViewModel(context);
 		}
 		private OrganizersViewModel _organizersViewModel;
-
 		public OrganizersViewModel OrganizersViewModel
 		{
 			get => _organizersViewModel;
 			set => SetProperty(ref _organizersViewModel, value);
 		}
+		
 		private SpeakersViewModel _speakersViewModel;
-
 		public SpeakersViewModel SpeakersViewModel
 		{
 			get => _speakersViewModel;
 			set => SetProperty(ref _speakersViewModel, value);
 		}
 
+		private SponsorsViewModel _sponsorsViewModel;
+		public SponsorsViewModel SponsorsViewModel
+		{
+			get => _sponsorsViewModel;
+			set => SetProperty(ref _sponsorsViewModel, value);
+		}
+
+		private ObservableCollection<EventsModel> _attendingEvents;
+
+		public ObservableCollection<EventsModel> AttendingEvents
+		{
+			get => _attendingEvents;
+			set => SetProperty(ref _attendingEvents, value);
+		}
 
 		[ObservableProperty]
 		private ObservableCollection<EventsModel> _events;
@@ -49,28 +63,31 @@ namespace EventManagementApp.ViewModels
 		{
 			await ExecuteAsync(async () =>
 			{
-				// Can create as many for each models, TaskModel change to any model
-				var tasks = await _context.GetAllAsync<EventsModel>();
+				var allEvents = await _context.GetAllAsync<EventsModel>();
 
-				if (tasks != null && tasks.Any())
+				if (allEvents != null && allEvents.Any())
 				{
-					// If null create new observable collection
+					// If null create a new observable collection
 					if (Events == null)
 					{
 						Events = new ObservableCollection<EventsModel>();
 					}
 
-					// Add each task to the observable collection only if it doesn't already exist
-					foreach (var task in tasks)
+					// Add each event to the observable collection only if it doesn't already exist
+					foreach (var eventModel in allEvents)
 					{
-						if (!Events.Any(t => t.EventID == task.EventID))
+						if (!Events.Any(e => e.EventID == eventModel.EventID))
 						{
-							Events.Add(task);
+							Events.Add(eventModel);
 						}
 					}
+
+					// Filter events where EventAttending is true
+					AttendingEvents = new ObservableCollection<EventsModel>(Events.Where(e => e.EventAttending));
 				}
 			}, "Fetching events...");
 		}
+
 
 
 		// Update Logic
@@ -100,6 +117,10 @@ namespace EventManagementApp.ViewModels
 				// Set the AssignedSpeaker property
 				OperatingEvent.AssignedSpeaker = SpeakersViewModel.Speakers.FirstOrDefault(o => o == OperatingEvent.AssignedSpeaker);
 
+				// Set the AssignedSponsor property
+				OperatingEvent.AssignedSponsor = SponsorsViewModel.Sponsors.FirstOrDefault(o => o == OperatingEvent.AssignedSponsor);
+
+
 				if (OperatingEvent.EventID == 0)
 				{
 					// Create Event
@@ -108,6 +129,7 @@ namespace EventManagementApp.ViewModels
 					if (!Events.Any(t => t.EventID == OperatingEvent.EventID))
 					{
 						Events.Add(OperatingEvent);
+						await Shell.Current.DisplayAlert("Saved", "Successfully saved", "OK");
 					}
 				}
 				else
@@ -120,6 +142,7 @@ namespace EventManagementApp.ViewModels
 					var index = Events.IndexOf(OperatingEvent);
 					Events.RemoveAt(index);
 					Events.Insert(index, eventCopy);
+					await Shell.Current.DisplayAlert("Updated", "Successfully updated", "OK");
 				}
 
 				// Reset data of OperatingEvent

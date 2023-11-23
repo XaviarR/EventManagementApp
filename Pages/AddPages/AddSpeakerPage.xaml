@@ -4,7 +4,8 @@
              x:Class="EventManagementApp.Pages.AddSpeakerPage"
              Title="Add a Speaker"
              xmlns:viewmodel="clr-namespace:EventManagementApp.ViewModels"
-             xmlns:models="clr-namespace:EventManagementApp.Models">
+             xmlns:models="clr-namespace:EventManagementApp.Models"
+             BackgroundColor="#EEEEEE">
     <!--Displayed in the tool bar at the top of the page-->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{OnPlatform Default='+ Add Speaker', iOS='+'}"
@@ -24,7 +25,7 @@
                             <Editor Text="{Binding OperatingSpeaker.SpeakerDetails}" Placeholder="Speaker Details" HeightRequest="100"/>
                         </VerticalStackLayout>
 
-                        <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Update" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="4" Padding="50, 0" BackgroundColor="#BCA37F"
+                        <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Update" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="4" Padding="50, 0" BackgroundColor="#393E46"
                         Command="{Binding SaveSpeakerCommand}">
                             <Button.Triggers>
                                 <DataTrigger TargetType="Button" Binding="{Binding OperatingSpeaker.SpeakerID}" Value="0">
@@ -52,7 +53,7 @@
                         <SwipeView>
                             <SwipeView.LeftItems>
                                 <SwipeItems>
-                                    <SwipeItem Text="Edit" BackgroundColor="Green" IconImageSource="edit.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SpeakersViewModel}}, Path=SetOperatingSpeakerCommand}" CommandParameter="{Binding .}" />
+                                    <SwipeItem Text="Edit" BackgroundColor="#00ADB5" IconImageSource="edit.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SpeakersViewModel}}, Path=SetOperatingSpeakerCommand}" CommandParameter="{Binding .}" />
                                 </SwipeItems>
                             </SwipeView.LeftItems>
                             <SwipeView.RightItems>
@@ -62,7 +63,7 @@
                             </SwipeView.RightItems>
                             <StackLayout Margin="5">
                                 <!-- Display information of the event in a frame -->
-                                <Frame Padding="3">
+                                
                                     <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="Auto, Auto" RowSpacing="5" Padding="5" BackgroundColor="White">
                                         <Grid.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SpeakersViewModel}}, Path=TapCommand}" CommandParameter="{Binding .}" />
@@ -72,7 +73,7 @@
                                         <Label Grid.Row="0" Grid.Column="1" Margin="10" Text="{Binding SpeakerName}" FontAttributes="Bold" FontSize="18"/>
                                         <Label Grid.Row="1" Grid.Column="0" Text="{Binding SpeakerDetails}" FontSize="12"/>
                                     </Grid>
-                                </Frame>
+                                
                             </StackLayout>
                         </SwipeView>
                     </DataTemplate>

@@ -37,13 +37,14 @@
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="Sponsors: " FontSize="22"/>
-                        <Span Text="{Binding SelectedEvent.Sponsors}" FontSize="18"/>
+                        <Span Text="{Binding SelectedEvent.AssignedSponsor.SponsorName}" FontSize="18"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
 
-            <Label Grid.Row="5" Grid.Column="0" Text="{Binding SelectedEvent.EventDescription}" FontSize="16"/>
-            
+            <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding SelectedEvent.EventDescription}" FontSize="16" LineBreakMode="WordWrap"/>
+
+
         </Grid>
     </VerticalStackLayout>
 
