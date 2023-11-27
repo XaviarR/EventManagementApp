@@ -11,7 +11,7 @@
         <ToolbarItem Text="{OnPlatform Default='+ Add Sponsor', iOS='+'}"
                      Command="{Binding SetOperatingSponsorCommand}"/>
     </ContentPage.ToolbarItems>
-    <ScrollView>
+    <ScrollView x:Name="mainScrollView">
         <StackLayout>
             <!--Create event, when edit is clicked, the functionality changes from saving a new event to editing, pressing the add event in the tool bar reverts functionality-->
             <VerticalStackLayout>
@@ -54,7 +54,7 @@
                             <SwipeView>
                                 <SwipeView.LeftItems>
                                     <SwipeItems>
-                                        <SwipeItem Text="Edit" BackgroundColor="#00ADB5" IconImageSource="edit.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SponsorsViewModel}}, Path=SetOperatingSponsorCommand}" CommandParameter="{Binding .}" />
+                                        <SwipeItem Text="Edit" BackgroundColor="#00ADB5" IconImageSource="edit.png" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SponsorsViewModel}}, Path=SetOperatingSponsorCommand}" CommandParameter="{Binding .}" Clicked="EditButton_Clicked"/>
                                     </SwipeItems>
                                 </SwipeView.LeftItems>
                                 <SwipeView.RightItems>

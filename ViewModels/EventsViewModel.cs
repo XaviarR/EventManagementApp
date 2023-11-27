@@ -94,10 +94,14 @@ namespace EventManagementApp.ViewModels
 
 		// Update Logic
 		[RelayCommand]
-		private void SetOperatingEvent(EventsModel? product)
+		public void SetOperatingEvent(EventsModel eventModel = null)
 		{
-			OperatingEvent = product ?? new();
+			// Reset the properties of OperatingEvent
+			OperatingEvent = eventModel ?? new EventsModel(); // This creates a new instance, you might need to adjust based on your model.
+
+			// Other initialization logic, if any
 		}
+
 
 		// Save Logic, handles both Adding and Updating by if statement
 		[RelayCommand]
@@ -148,7 +152,7 @@ namespace EventManagementApp.ViewModels
 				}
 
 				// Reset data of OperatingEvent
-				SetOperatingEvent(OperatingEvent);
+				SetOperatingEvent();
 			}, busyText);
 		}
 

@@ -5,13 +5,14 @@
              Title="Add an Event"
              xmlns:viewmodel="clr-namespace:EventManagementApp.ViewModels"
              xmlns:models="clr-namespace:EventManagementApp.Models"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              BackgroundColor="#EEEEEE">
     <!--Displayed in the tool bar at the top of the page-->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{OnPlatform Default='+ Add Event', iOS='+'}"
                      Command="{Binding SetOperatingEventCommand}"/>
     </ContentPage.ToolbarItems>
-    <ScrollView>
+    <ScrollView x:Name="mainScrollView">
 
         <StackLayout>
             <!--Create event, when edit is clicked, the functionality changes from saving a new event to editing, pressing the add event in the tool bar reverts functionality-->
@@ -23,7 +24,7 @@
                             <Label Text="Event:" FontSize="24"/>
                             <Entry Text="{Binding OperatingEvent.EventTitle}" Placeholder="Event Name" Margin="0" HeightRequest="50"/>
                             <Entry Text="{Binding OperatingEvent.EventImage}" Placeholder="Event Image URL" HeightRequest="50"/>
-                            <DatePicker Date="{Binding OperatingEvent.EventBooking}" />
+                            <DatePicker Date="{Binding OperatingEvent.EventBooking}" MinimumDate="{x:Static sys:DateTime.Now}"/>
                             <TimePicker Time="{Binding OperatingEvent.EventBookingTime}" />
                             <Editor Text="{Binding OperatingEvent.EventDescription}" Placeholder="Event Description" HeightRequest="100"/>
 
@@ -91,7 +92,7 @@
                                         <Label Grid.Row="1" Grid.Column="0" Text="{Binding EventTitle}" FontAttributes="Bold" FontSize="18"/>
                                         <!--<Label Grid.Row="2" Grid.Column="0" Text="{Binding EventDescription}" FontSize="12"/>-->
 
-                                        <Button Grid.Row="3" Grid.Column="0" Text="Edit" BackgroundColor="#00ADB5" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}}, Path=SetOperatingEventCommand}" CommandParameter="{Binding .}"/>
+                                        <Button Grid.Row="3" Grid.Column="0" Text="Edit" BackgroundColor="#00ADB5" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}}, Path=SetOperatingEventCommand}" CommandParameter="{Binding .}" Clicked="EditButton_Clicked"/>
                                         <Button Grid.Row="3" Grid.Column="1" Text="Delete" BackgroundColor="Red" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}}, Path=DeleteEventCommand}" CommandParameter="{Binding EventID}"/>
                                     </Grid>
                                 </Frame>
