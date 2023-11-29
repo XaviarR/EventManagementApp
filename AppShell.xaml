@@ -9,13 +9,13 @@
     
     <TabBar>
         <ShellContent
-        Title="Main"
+        Title="Events"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage"
         Icon="{OnPlatform 'home.png'}"/>
         
         <ShellContent
-        Title="Data"
+        Title="Attending"
         ContentTemplate="{DataTemplate local:DataVisualizationPage}"
         Route="DataVisualizationPage"
         Icon="{OnPlatform 'attending.png'}"/>

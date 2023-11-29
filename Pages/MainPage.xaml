@@ -9,7 +9,12 @@
 
 
     <ScrollView>
+            
         <StackLayout>
+            <StackLayout>
+                <Image Source="events.jpg"/>
+                <Label Text="Events Management Application" FontSize="38" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
             <Grid RowDefinitions="*, Auto">
                 <CollectionView Grid.Row="0" ItemsSource="{Binding Events}">
                     <CollectionView.ItemsLayout>

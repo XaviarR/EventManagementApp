@@ -97,9 +97,8 @@ namespace EventManagementApp.ViewModels
 		public void SetOperatingEvent(EventsModel eventModel = null)
 		{
 			// Reset the properties of OperatingEvent
-			OperatingEvent = eventModel ?? new EventsModel(); // This creates a new instance, you might need to adjust based on your model.
+			OperatingEvent = eventModel ?? new EventsModel();
 
-			// Other initialization logic, if any
 		}
 
 

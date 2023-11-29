@@ -49,14 +49,17 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\addevent_icon.png" />
 	  <None Remove="Resources\Images\attending.png" />
+	  <None Remove="Resources\Images\events.jpg" />
 	  <None Remove="Resources\Images\home.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microcharts" Version="0.9.5.9" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.14" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="SkiaSharp" Version="2.88.6" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.141-beta" />
 		<PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.7-pre20231110210158" />

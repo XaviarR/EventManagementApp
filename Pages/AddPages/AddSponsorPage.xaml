@@ -63,8 +63,7 @@
                                     </SwipeItems>
                                 </SwipeView.RightItems>
                                 <StackLayout Margin="1">
-                                    <!-- Display information of the event in a frame -->
-                                    <Frame Padding="3" BackgroundColor="#EEEEEE">
+
                                         <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="Auto, Auto" RowSpacing="5" Padding="5" BackgroundColor="White">
                                             <Grid.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SponsorsViewModel}}, Path=TapCommand}" CommandParameter="{Binding .}" />
@@ -74,7 +73,7 @@
                                             <Label Grid.Row="0" Grid.Column="1" Margin="10" Text="{Binding SponsorName}" FontAttributes="Bold" FontSize="18"/>
                                             <Label Grid.Row="1" Grid.Column="0" Text="{Binding SponsorDetails}" FontSize="12"/>
                                         </Grid>
-                                    </Frame>
+
                                 </StackLayout>
                             </SwipeView>
                         </DataTemplate>

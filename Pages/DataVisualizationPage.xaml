@@ -4,7 +4,7 @@
              x:Class="EventManagementApp.Pages.DataVisualizationPage"
              xmlns:viewmodel="clr-namespace:EventManagementApp.ViewModels"
              xmlns:models="clr-namespace:EventManagementApp.Models"
-             Title="Data"
+             Title="Attending"
              BackgroundColor="#EEEEEE">
     <ScrollView>
         <StackLayout>
