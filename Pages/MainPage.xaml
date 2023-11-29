@@ -9,10 +9,7 @@
 
 
     <ScrollView>
-
         <StackLayout>
-            <Button Text="Log in" CornerRadius="4" BackgroundColor="#393E46" Clicked="Button_Clicked"/>
-            
             <StackLayout>
                 <Image Source="events.jpg"/>
                 <Label Text="Events Management Application" FontSize="38" LineBreakMode="WordWrap" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
