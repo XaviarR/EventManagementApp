@@ -1,4 +1,5 @@
 ﻿using EventManagementApp.Pages;
+using EventManagementApp.Pages.UserPages;
 
 namespace EventManagementApp;
 
@@ -14,5 +15,7 @@ public partial class AppShell : Shell
 		Routing.RegisterRoute(nameof(AddOrganizerPage), typeof(AddOrganizerPage));
 		Routing.RegisterRoute(nameof(AddSpeakerPage), typeof(AddSpeakerPage));
 		Routing.RegisterRoute(nameof(AddSponsorPage), typeof(AddSponsorPage));
+		Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
+		Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
 	}
 }

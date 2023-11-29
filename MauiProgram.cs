@@ -1,5 +1,6 @@
 ﻿using EventManagementApp.Data;
 using EventManagementApp.Pages;
+using EventManagementApp.Pages.UserPages;
 using EventManagementApp.ViewModels;
 using Microsoft.Extensions.Logging;
 
@@ -35,6 +36,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<AddSpeakerPage>();
 		builder.Services.AddTransient<AddSponsorPage>();
 
+		builder.Services.AddTransient<RegisterPage>();
 
 		return builder.Build();
 	}

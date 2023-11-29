@@ -4,46 +4,31 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:EventManagementApp.Pages"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:userpages="clr-namespace:EventManagementApp.Pages.UserPages"
     BackgroundColor="#222831">
-    
+
     <TabBar>
         <ShellContent
-        Title="Events"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage"
-        Icon="{OnPlatform 'home.png'}"/>
-        
-        <ShellContent
-        Title="Attending"
-        ContentTemplate="{DataTemplate local:DataVisualizationPage}"
-        Route="DataVisualizationPage"
-        Icon="{OnPlatform 'attending.png'}"/>
+            Title="Events"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage"
+            Icon="{OnPlatform 'home.png'}"/>
 
         <ShellContent
-        Title="New Event"
-        ContentTemplate="{DataTemplate local:AddEventPage}"
-        Route="AddEventPage"
-        Icon="{OnPlatform 'addevent_icon.png'}"/>
-
-        <!--<ShellContent
-        Title="New Organizer"
-        ContentTemplate="{DataTemplate local:AddOrganizerPage}"
-        Route="AddOrganizerPage"
-        Icon="{OnPlatform 'addevent_icon.png'}"/>
+            Title="Attending"
+            ContentTemplate="{DataTemplate local:DataVisualizationPage}"
+            Route="DataVisualizationPage"
+            Icon="{OnPlatform 'attending.png'}"/>
 
         <ShellContent
-        Title="New Speaker"
-        ContentTemplate="{DataTemplate local:AddSpeakerPage}"
-        Route="AddSpeakerPage"
-        Icon="{OnPlatform 'addevent_icon.png'}"/>
-
+            Title="New Event"
+            ContentTemplate="{DataTemplate local:AddEventPage}"
+            Route="AddEventPage"
+            Icon="{OnPlatform 'addevent_icon.png'}"/>
         <ShellContent
-        Title="New Sponsor"
-        ContentTemplate="{DataTemplate local:AddSponsorPage}"
-        Route="AddSponsorPage"
-        Icon="{OnPlatform 'addevent_icon.png'}"/>-->
-
+            Title="Log In"
+            ContentTemplate="{DataTemplate userpages:LoginPage}"
+            Route="LoginPage"
+            Icon="{OnPlatform 'addevent_icon.png'}"/>
     </TabBar>
-    
 </Shell>

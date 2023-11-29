@@ -1,4 +1,5 @@
-﻿using EventManagementApp.ViewModels;
+﻿using EventManagementApp.Pages.UserPages;
+using EventManagementApp.ViewModels;
 
 namespace EventManagementApp.Pages;
 
@@ -17,6 +18,11 @@ public partial class MainPage : ContentPage
 	{
 		base.OnAppearing();
 		await _viewmodel.LoadEventAsync();
+	}
+
+	private async void Button_Clicked(object sender, EventArgs e)
+	{
+		await Shell.Current.Navigation.PushAsync(new LoginPage());
 	}
 }
 
