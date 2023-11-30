@@ -29,7 +29,7 @@ public partial class LoginPage : ContentPage
 			Console.WriteLine($"An error occurred: {ex.Message}");
 		}
 	}
-	private async void SponsorButton_Clicked(object sender, EventArgs e)
+	private async void RegisterButton_Clicked(object sender, EventArgs e)
 	{
 		RegisterPage addOrganizerPage = new RegisterPage();
 		await Shell.Current.Navigation.PushAsync(addOrganizerPage);

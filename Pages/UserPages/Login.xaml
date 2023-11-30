@@ -2,10 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventManagementApp.Pages.UserPages.LoginPage"
-             Title="Sign in">
+             Title="Sign in"
+             xmlns:viewmodel="clr-namespace:EventManagementApp.ViewModels"
+             xmlns:models="clr-namespace:EventManagementApp.Models">
+    
     <VerticalStackLayout>
         <BoxView Color="#FFF2D8" HeightRequest="1"/>
-        <Frame>
+        <Frame x:Name="loginFrame">
             <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, Auto" Padding="10" RowSpacing="10" ColumnSpacing="10">
                 <VerticalStackLayout Grid.Row="0" Grid.Column="0">
                     <Label Text="Sign in" FontSize="24"/>
@@ -16,9 +19,9 @@
                 <Button Grid.Row="1" Grid.ColumnSpan="2" Text="Login" HorizontalOptions="Center" VerticalOptions="End" CornerRadius="4" Padding="50, 0" BackgroundColor="#393E46"
                         Command="{Binding LoginCommand}"/>
                 <Button Grid.Row="2" Text="Register" CornerRadius="4" BackgroundColor="#393E46"
-                                    Clicked="SponsorButton_Clicked"/>
+                                    Clicked="RegisterButton_Clicked"/>
             </Grid>
-            
         </Frame>
+        <Label Text="{Binding LoggedInUserEmail}" IsVisible="{Binding IsLoggedIn}" />
     </VerticalStackLayout>
 </ContentPage>

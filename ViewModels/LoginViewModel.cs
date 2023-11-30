@@ -57,9 +57,11 @@ namespace EventManagementApp.ViewModels
 
 		// Update Logic
 		[RelayCommand]
-		private void SetOperatingUser(UserModel? userModel)
+		public void SetOperatingUser(UserModel eventModel = null)
 		{
-			OperatingUser = userModel ?? new();
+			// Reset the properties of OperatingEvent
+			OperatingUser = eventModel ?? new UserModel();
+
 		}
 
 		// Save Logic, handles both Adding and Updating by if statement
@@ -102,7 +104,7 @@ namespace EventManagementApp.ViewModels
 				}
 
 				// Reset data of OperatingTask
-				SetOperatingUser(OperatingUser);
+				SetOperatingUser();
 			}, busyText);
 		}
 
@@ -163,7 +165,7 @@ namespace EventManagementApp.ViewModels
 					// Login successful, navigate to the main application screen or perform other actions
 					await Shell.Current.DisplayAlert("Login Successful", "Welcome!", "OK");
 					// Navigate back to the previous page
-					await Shell.Current.Navigation.PopAsync();
+					await Shell.Current.GoToAsync("//MainPage");
 				}
 				else
 				{

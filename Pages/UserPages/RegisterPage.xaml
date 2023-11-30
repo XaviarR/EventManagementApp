@@ -5,7 +5,6 @@
              Title="Sign up"
              NavigationPage.HasBackButton="False">
     <VerticalStackLayout>
-        <Button Text="Back" Clicked="Button_Clicked"/>
         <BoxView Color="#FFF2D8" HeightRequest="1"/>
         <Frame>
             <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, Auto" Padding="10" RowSpacing="10" ColumnSpacing="10">
