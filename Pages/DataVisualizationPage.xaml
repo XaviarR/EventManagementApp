@@ -6,49 +6,49 @@
              xmlns:models="clr-namespace:EventManagementApp.Models"
              Title="Attending"
              BackgroundColor="#EEEEEE">
-    <ScrollView>
-        <StackLayout>
-            <Label Text="Attending Events:" FontSize="24" Margin="10" FontAttributes="Bold"/>
+<ScrollView>
+    <StackLayout>
+        <Label Text="Attending Events:" FontSize="24" Margin="10" FontAttributes="Bold"/>
 
-            <!-- Column Titles -->
-            <Grid Padding="10" RowDefinitions="Auto" ColumnDefinitions="*, *, *">
-                <Label Grid.Row="0" Grid.Column="0" Text="Event Title" FontAttributes="Bold"/>
-                <Label Grid.Row="0" Grid.Column="1" Text="Event Date" FontAttributes="Bold"/>
-                <Label Grid.Row="0" Grid.Column="2" Text="Event Time" FontAttributes="Bold"/>
-            </Grid>
+        <!-- Column Titles -->
+        <Grid Padding="10" RowDefinitions="Auto" ColumnDefinitions="*, *, *">
+            <Label Grid.Row="0" Grid.Column="0" Text="Event Title" FontAttributes="Bold"/>
+            <Label Grid.Row="0" Grid.Column="1" Text="Event Date" FontAttributes="Bold"/>
+            <Label Grid.Row="0" Grid.Column="2" Text="Event Time" FontAttributes="Bold"/>
+        </Grid>
 
-            <!-- CollectionView -->
-            <CollectionView ItemsSource="{Binding AttendingEvents}">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:EventsModel">
-                        <Grid Padding="10" RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, *, *">
-                            <!-- Separator Line -->
-                            <BoxView Grid.Row="1" Grid.ColumnSpan="3" Color="Black" HeightRequest="1"/>
+        <!-- CollectionView for attending events -->
+        <CollectionView ItemsSource="{Binding AttendingEvents}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:EventsModel">
+                    <Grid Padding="10" RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, *, *">
+                        <!-- Separator Line -->
+                        <BoxView Grid.Row="1" Grid.ColumnSpan="3" Color="Black" HeightRequest="1"/>
 
-                            <!-- Data Rows -->
-                            <Label Grid.Row="2" Grid.Column="0" Text="{Binding EventTitle}" FontAttributes="Bold"/>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding EventBooking, StringFormat='{0:dd/MM/yyyy}'}"/>
-                            <Label Grid.Row="2" Grid.Column="2" Text="{Binding EventBookingTime, StringFormat='{0:hh:mm tt}'}"/>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+                        <!-- Data Rows -->
+                        <Label Grid.Row="2" Grid.Column="0" Text="{Binding EventTitle}" FontAttributes="Bold"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="{Binding EventBooking, StringFormat='{0:dd/MM/yyyy}'}"/>
+                        <Label Grid.Row="2" Grid.Column="2" Text="{Binding EventBookingTime, StringFormat='{0:hh:mm tt}'}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
-                <!--If collection view is empty, meaning no tasks are in the database, this is displayed on the page-->
-                <CollectionView.EmptyView>
-                    <ContentView>
-                        <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                            <Label Text="No Events Found" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                            <Label Text="Try creating a new Event"/>
-                        </VerticalStackLayout>
-                    </ContentView>
-                </CollectionView.EmptyView>
-            </CollectionView>
+            <!--If collection view is empty, meaning no tasks are in the database, this is displayed on the page-->
+            <CollectionView.EmptyView>
+                <ContentView>
+                    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="No Events Found" FontSize="18" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        <Label Text="Try creating a new Event"/>
+                    </VerticalStackLayout>
+                </ContentView>
+            </CollectionView.EmptyView>
+        </CollectionView>
 
-            <Button Text="Feedback Form" Clicked="Button_Clicked" VerticalOptions="EndAndExpand" BackgroundColor="#393E46"/>
-        </StackLayout>
-    </ScrollView>
+        <Button Text="Feedback Form" Clicked="Button_Clicked" VerticalOptions="EndAndExpand" BackgroundColor="#393E46"/>
+    </StackLayout>
+</ScrollView>
 
 </ContentPage>
