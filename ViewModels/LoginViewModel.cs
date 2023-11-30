@@ -33,7 +33,8 @@ namespace EventManagementApp.ViewModels
 			{
 				// Can create as many for each models, TaskModel change to any model
 				var tasks = await _context.GetAllAsync<UserModel>();
-
+				// Reset data of OperatingUser
+				SetOperatingUser();
 				if (tasks != null && tasks.Any())
 				{
 					// If null create new observable collection
@@ -73,17 +74,25 @@ namespace EventManagementApp.ViewModels
 				return;
 			}
 
-			// Update BusyText, if Id == 0 then text should display Creating Task, else Updating Task
+			// Validate user input
+			if (string.IsNullOrWhiteSpace(OperatingUser.Email) || string.IsNullOrWhiteSpace(OperatingUser.Password))
+			{
+				// Display an alert informing the user that required fields are empty
+				await Shell.Current.DisplayAlert("Validation Error", "Please fill in all required fields", "OK");
+				return;
+			}
+
+			// Update BusyText, if Id == 0 then text should display Creating User, else Updating User
 			var busyText = OperatingUser.UserID == 0 ? "Creating User..." : "Updating User...";
 
 			await ExecuteAsync(async () =>
 			{
 				if (OperatingUser.UserID == 0)
 				{
-					// Create Task
+					// Create User
 					await _context.AddItemAync<UserModel>(OperatingUser);
-					// Add the new task to the collection only if it doesn't already exist
-					if (!Users.Any(t => t.UserID == OperatingUser.UserID))
+					// Add the new user to the collection only if it doesn't already exist
+					if (!Users.Any(u => u.UserID == OperatingUser.UserID))
 					{
 						Users.Add(OperatingUser);
 						await Shell.Current.DisplayAlert("Registered Successfully", "", "Ok");
@@ -93,20 +102,21 @@ namespace EventManagementApp.ViewModels
 				}
 				else
 				{
-					// Updating Task
+					// Updating User
 					await _context.UpdateItemAync<UserModel>(OperatingUser);
 					// create clone to keep data
-					var taskCopy = OperatingUser.Clone();
+					var userCopy = OperatingUser.Clone();
 					// Get the index of the item to remove then add back
 					var index = Users.IndexOf(OperatingUser);
 					Users.RemoveAt(index);
-					Users.Insert(index, taskCopy);
+					Users.Insert(index, userCopy);
 				}
 
-				// Reset data of OperatingTask
+				// Reset data of OperatingUser
 				SetOperatingUser();
 			}, busyText);
 		}
+
 
 
 		// Delete Logic, When Task is deleted the ID is set to auto increment, meaning that it will continue even when task is deleted resulting in gaps of ID integer
