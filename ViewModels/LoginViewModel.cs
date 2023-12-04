@@ -33,8 +33,7 @@ namespace EventManagementApp.ViewModels
 			{
 				// Can create as many for each models, TaskModel change to any model
 				var tasks = await _context.GetAllAsync<UserModel>();
-				// Reset data of OperatingUser
-				SetOperatingUser();
+
 				if (tasks != null && tasks.Any())
 				{
 					// If null create new observable collection
