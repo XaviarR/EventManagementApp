@@ -216,7 +216,7 @@ namespace EventManagementApp.ViewModels
 			set => SetProperty(ref _selectedEvent, value);
 		}
 		[RelayCommand]
-		async Task Tap(EventsModel selectedEvent)
+		public async Task Tap(EventsModel selectedEvent)
 		{
 			// Set the selected event
 			SelectedEvent = selectedEvent;

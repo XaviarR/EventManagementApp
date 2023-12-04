@@ -22,6 +22,5 @@
                                     Clicked="RegisterButton_Clicked"/>
             </Grid>
         </Frame>
-        <Label Text="{Binding OperatingUser.Email}"/>
     </VerticalStackLayout>
 </ContentPage>
